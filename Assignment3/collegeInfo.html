@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bay Area Colleges and Universities</title>
+    <script src="collegeInfo.js" defer></script>
+<style>
+
+    th
+    {
+        width: 100px;
+        background-color: grey;
+        color: white;
+        border-top: 2px black solid;
+        border-bottom: 2px black solid;
+        border-right: 2px black solid;
+        padding-top: 3px;
+        padding-bottom: 3px;
+    }
+
+    #all
+    {
+        font-family: sans-serif;
+ 	    width: 1200px;
+	}
+
+	#searchTable
+	{
+	    width: 500px;
+	    float: left;
+	    border: 2px black solid;
+	    padding-left:10px;
+	    padding-bottom: 5px;
+	    padding-top: 10px;
+	}
+
+	#info
+	{
+	    border: 2px black solid;
+	    float: left;
+	}
+
+	.color
+	{
+	    background-color: #D3D3D3;
+	}
+
+
+
+</style>
+</head>
+<body>
+        <div id="all">
+        <h1> Bay Area Colleges and Universities </h1>
+                    <div id="info">
+                        <table style="border-collapse:collapse;">
+                            <tr>
+                                <th class='titleCells'>Name</th>
+                                <th>SAT High</th>
+                                <th>SAT Low</th>
+                                <th>Tuition</th>
+                            </tr>
+                            <tr style="border-right: 2px black solid; border-bottom: 2px black solid;">
+                                <td class='titleCells' style="border-right: 2px black solid;">Stanford</td>
+                                <td style="border-right: 2px black solid;">1570</td>
+                                <td style="border-right: 2px black solid;">1380</td>
+                                <td style="border-right: 2px black solid;">44757</td>
+                            </tr>
+                            <tr class='color' style="border-right: 2px black solid; border-bottom: 2px black solid;">
+                                <td class='titleCells' style="border-right: 2px black solid;">UC Berkeley</td>
+                                <td style="border-right: 2px black solid;">1500</td>
+                                <td style="border-right: 2px black solid;">1250</td>
+                                <td style="border-right: 2px black solid;">13844</td>
+                            </tr>
+                            <tr style="border-right: 2px black solid; border-bottom: 2px black solid;">
+                                <td class='titleCells' style="border-right: 2px black solid;">UC Santa Cruz</td>
+                                <td style="border-right: 2px black solid;">1280</td>
+                                <td style="border-right: 2px black solid;">1000</td>
+                                <td style="border-right: 2px black solid;">13398</td>
+                            </tr>
+                            <tr class='color' style="border-right: 2px black solid; border-bottom: 2px black solid;">
+                                <td class='titleCells' style="border-right: 2px black solid;">SFSU</td>
+                                <td style="border-right: 2px black solid;">1110</td>
+                                <td style="border-right: 2px black solid;">880</td>
+                                <td style="border-right: 2px black solid;">6468</td>
+                            </tr>
+                            <tr style="border-right: 2px black solid; border-bottom: 2px black solid;">
+                                <td class='titleCells' style="border-right: 2px black solid;">SJSU</td>
+                                <td style="border-right: 2px black solid;">1160</td>
+                                <td style="border-right: 2px black solid;">880</td>
+                                <td style="border-right: 2px black solid;">9496</td>
+                            </tr>
+                            <tr class='color' style="border-right: 2px black solid; border-bottom: 2px black solid;">
+                                <td class='titleCells' style="border-right: 2px black solid;">Sonoma State</td>
+                                <td style="border-right: 2px black solid;">1090</td>
+                                <td style="border-right: 2px black solid;">880</td>
+                                <td style="border-right: 2px black solid;">7276</td>
+                            </tr>
+                            <tr style="border-right: 2px black solid; border-bottom: 2px black solid;">
+                                <td class='titleCells' style="border-right: 2px black solid;">CalState East Bay</td>
+                                <td style="border-right: 2px black solid;">1010</td>
+                                <td style="border-right: 2px black solid;">800</td>
+                                <td style="border-right: 2px black solid;">6550</td>
+                            </tr>
+                            <tr class='color' style="border-right: 2px black solid; border-bottom: 2px black solid;">
+                                <td class='titleCells' style="border-right: 2px black solid;">USF</td>
+                                <td style="border-right: 2px black solid;">1270</td>
+                                <td style="border-right: 2px black solid;">1070</td>
+                                <td style="border-right: 2px black solid;">41450</td>
+                            </tr>
+                            <tr style="border-right: 2px black solid; border-bottom: 2px black solid;">
+                                <td class='titleCells' style="border-right: 2px black solid;">SCU</td>
+                                <td style="border-right: 2px black solid;">1380</td>
+                                <td style="border-right: 2px black solid;">1190</td>
+                                <td style="border-right: 2px black solid;">43812</td>
+                            </tr>
+                            <tr class='color' style="border-right: 2px black solid; border-bottom: 2px black solid;">
+                                <td class='titleCells' style="border-right: 2px black solid;">Mills College</td>
+                                <td style="border-right: 2px black solid;">1250</td>
+                                <td style="border-right: 2px black solid;">1040</td>
+                                <td style="border-right: 2px black solid;">42918</td>
+                            </tr>
+                        </table>
+                    </div>
+
+            <div id="search">
+                <form id="searchForm">
+                    <table id="searchTable">
+                        <tr>
+                            <td colspan="3" style="text-align:center; align-self:center; color: white; background-color: grey; border-bottom: 2px black solid; padding-top: 3px; padding-bottom: 3px; ">
+                                Search Criteria
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="radio" name="schoolType" value="public" checked>
+                                Public
+                            </td>
+                            <td>
+                                <input type="radio" name="schoolType" value="private" checked>
+                                Private
+                            </td>
+                            <td>
+                                <input type="radio" name="schoolType" value="either" checked>
+                                Don't Care
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size: 14pt;">
+                                Maximum Tuition
+                            </td>
+                            <td style=" font-size: 10pt;">
+                                leave blank for don't care
+                            </td>
+                            <td><input type="text" name="maxTuition" size="20"></td>
+                        </tr>
+                        <tr>
+                            <td style="font-size: 14pt;">
+                                Maximum High SAT
+                            </td>
+                            <td style="margin-left: 13px; font-size: 10pt;">
+                                leave blank for don't care
+                            </td>
+                            <td><input type="text" name="maxSAT" size="20"></td>
+                        </tr>
+                        <tr>
+                            <td style="font-size: 14pt;">
+                                Maximum Low SAT
+                            </td>
+                            <td style="margin-left: 13px; font-size: 10pt;">
+                                leave blank for don't care
+                            </td>
+                            <td><input type="text" name="minSAT" size="20"></td>
+                        </tr>
+
+
+                    </table>
+                    <input type="button" value="Update" onclick="createNewTable();" style="width: 70px; height: 30px; float: right; margin-right: 430px;">
+                </form>
+            </div>
+        </div>
+
+</body>
+</html>
