@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Car Options</title>
+    <script> </script>
+</head>
+<body>
+    <form id="carConfig" style="display:grid; grid-template-columns:auto; grid-template-rows:auto;">
+        <h1 style="grid-row:1; grid-column:1/span2; width:100%; font-family:sans-serif;"> Configure Your GT Super Sportscar</h1>
+
+        <table style="grid-row: 2; grid-column: 1; border: 1px solid black; padding: 10px; width: 100%;" > <!--Configuration Table Start-->
+            <tr>
+                <th style="text-align:left; padding-left: 10px; font-family:sans-serif; font-variant: small-caps; font-weight:bold; background-color:grey; color:white; font-size:20pt;" colspan="3">Configuration</th>
+            </tr>
+            <tr>
+                <td> <!--checkbox-->
+                    <input type="checkbox" name="GTM"/>
+                </td>
+                <td style="font-family:sans-serif;"> <!--name-->
+                    GT Manual
+                </td>
+                <td style="padding-left:50px; text-align:right; font-family:sans-serif;"> <!--price-->
+                    $17,790.00
+                </td>
+            </tr>
+            <tr>
+                <td> <!--checkbox-->
+                    <input type="checkbox" name="GTAuto"/>
+                </td>
+                <td style="font-family:sans-serif;"> <!--name-->
+                    GT Automatic
+                </td>
+                <td style="padding-left:50px; text-align:right; font-family:sans-serif;"> <!--price-->
+                    $18,590.00
+                </td>
+            </tr>
+            <tr>
+                <td> <!--checkbox-->
+                    <input type="checkbox" name="GTSM"/>
+                </td>
+                <td style="font-family:sans-serif;"> <!--name-->
+                    GT-S Manual
+                </td>
+                <td style="padding-left:50px; text-align:right; font-family:sans-serif;"> <!--price-->
+                    $22,455.00
+                </td>
+            </tr>
+            <tr>
+                <td> <!--checkbox-->
+                    <input type="checkbox" name="GTSS"/>
+                </td>
+                <td style="font-family:sans-serif;"> <!--name-->
+                    GT-S Sportshift
+                </td>
+                <td style="padding-left:50px; text-align:right; font-family:sans-serif;"> <!--price-->
+                    $23,155.00
+                </td>
+            </tr>
+        </table> <!--Configuration Table End-->
+
+        <table style="grid-row: 3; grid-column: 1; border: 1px solid black; padding: 10px; width: 100%; margin-top: 10px;" > <!--Factory Options Table Start-->
+            <tr> <!--Option Combo #1-->
+                <th style="text-align:left; padding-left: 10px; font-family:sans-serif; font-variant: small-caps; font-weight:bold; background-color:grey; color:white; font-size:20pt;" colspan="3">Factory Options</th>
+            </tr>
+            <tr>
+                <td> <!--Checkbox-->
+                    <input type="checkbox" name="Option1"/>
+                </td>
+                <td style="font-family:sans-serif;"> <!--name-->
+                    Option Combo #1
+                </td>
+                <td style="padding-left:50px; text-align:right; font-family:sans-serif;"> <!--price-->
+                    $1235.00
+                </td>
+            </tr>
+            <tr> <!--description-->
+                <td colspan="3">
+                    <ul style="font-size: 10pt; padding-left: 30px;">
+                        <li>
+                            Power Windows, Doors, Cruise Control</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr> <!--Option Combo #2-->
+                <td> <!--Checkbox-->
+                    <input type="checkbox" name="Option2"/>
+                </td>
+                <td style="font-family:sans-serif;"> <!--name-->
+                    Option Combo #2
+                </td>
+                <td style="padding-left:50px; text-align:right; font-family:sans-serif;"> <!--price-->
+                    $3354.00
+                </td>
+            </tr>
+            <tr> <!--description-->
+                <td colspan="3">
+                    <ul style="font-size: 10pt; padding-left: 30px;">
+                        <li>Rear Spoiler and Fog Lamps</li>
+                        <li>Keyless Entry</li>
+                        <li>Power Tilt & Slide Moonroof</li>
+                        <li>Power Windows, Doors, Cruise Control</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr> <!--No Combo Option-->
+                <td> <!--Checkbox-->
+                    <input type="checkbox" name="NoCombo"/>
+                </td>
+                <td style="font-family:sans-serif;"> <!--name-->
+                    No Combo
+                </td>
+                <td style="padding-left:50px; text-align:right; font-family:sans-serif;"> <!--price-->
+                    $0.00
+                </td>
+            </tr>
+        </table> <!--Factory Options Table End-->
+
+        <table style="grid-row: 4; grid-column: 1; border: 1px solid black; padding: 10px; width: 100%; margin-top:10px;" > <!--Dealer Options Table Start-->
+            <tr> <!--Upgraded Stereo System-->
+                <th style="padding-left: 10px; text-align:left; font-family:sans-serif; font-variant: small-caps; font-weight:bold; background-color:grey; color:white; font-size:20pt;" colspan="3">Dealer Options</th>
+            </tr>
+            <tr>
+                    <td> <!--Checkbox-->
+                        <input type="checkbox" name="USS"/>
+                    </td>
+                    <td style="font-family:sans-serif;"> <!--name-->
+                        Upgraded Stereo System
+                    </td>
+                    <td style="padding-left:50px; text-align:right; font-family:sans-serif;"> <!--price-->
+                        $550.00
+                    </td>
+            </tr>
+            <tr> <!--VIP Security System-->
+                <td> <!--Checkbox-->
+                    <input type="checkbox" name="VIPSS"/>
+                </td>
+                <td style="font-family:sans-serif;"> <!--name-->
+                    VIP Security System
+                </td>
+                <td style="padding-left:50px; text-align:right; font-family:sans-serif;"> <!--price-->
+                    $399.00
+                </td>
+            </tr>
+            <tr> <!--Auto-Dimming Mirror-->
+                <td> <!--Checkbox-->
+                    <input type="checkbox" name="ADM"/>
+                </td>
+                <td style="font-family:sans-serif;"> <!--name-->
+                    Auto-Dimming Mirror
+                </td>
+                <td style="padding-left:50px; text-align:right; font-family:sans-serif;"> <!--price-->
+                    $295.00
+                </td>
+            </tr>
+        </table> <!--Dealer Options Table End-->
+
+        <table style="grid-row: 5; grid-column: 1; border: 1px solid black; padding: 10px; width: 100%; margin-top: 10px;"> <!--Total Price Table Start-->
+            <tr>
+                <th style="text-align:left; padding-left: 10px; font-family:sans-serif; font-variant: small-caps; font-weight:bold; background-color:grey; color:white; font-size:20pt;" colspan="2">Total Price</th>
+            </tr>
+            <tr>
+                <td>
+                    <input type="text" size="30" name="total" />
+                </td>
+                <td>
+                    <input type="button" value="Calculate Total" id="totalB"/>
+                </td>
+            </tr>
+        </table> <!--Total Price Table End-->
+
+        <table style="grid-row: 2/span 3; grid-column: 2; border: 1px solid black; padding: 10px; width: 100%; margin-left: 10px;"> <!--Color Choices Table Start-->
+            <tr>
+                <th style="text-align:left; padding-left: 10px; font-family:sans-serif; font-variant: small-caps; font-weight:bold; background-color:grey; color:white; font-size:20pt;" colspan="2">Choose A Color</th>
+            </tr>
+            <tr>
+                <td>
+                        <select name="carColor" size="6">
+                            <option selected="selected" value ="red">Red</option>
+                            <option value = "blue">Blue</option>
+                            <option value = "silver">Silver</option>
+                            <option value = "white">White</option>
+                            <option value = "black">Black</option>
+                        </select>
+                    </td>
+                    <td>
+                        <img id="carPic" style="width:auto;" alt="carPicture" src="red.jpg">
+                    </td>
+            </tr>
+        </table> <!--Color Choices Table End-->
+    </form>
+
+<script>
+function carColor()
+{
+   document.getElementById("carPic").src=document.getE lementById("carConfig").carColor.value + ".jpg";
+}
+ for(select of document.getElementsByTagName("select"))
+{
+select.addEventListener("change",carColor, false);
+}
+
+function calculateTotalPrice()
+ {
+    var carPrice = document.getElementById("carConfig");
+    var t = 0;
+
+    if(carPrice.GTM.checked)
+            t=t+17790;
+    if(carPrice.GTAuto.checked)
+            t=t+18590;
+    if(carPrice.GTSM.checked)
+            t=t+22455;
+    if(carPrice.GTSS.checked)
+            t=t+23155;
+    if(carPrice.Option1.checked)
+            t=t+1235;
+    if(carPrice.Option2.checked)
+            t=t+3354;
+    if(carPrice.NoCombo.checked)
+            t=t+0;
+    if(carPrice.USS.checked)
+            t=t+550;
+    if(carPrice.VIPSS.checked)
+            t=t+399;
+    if(carPrice.ADM.checked)
+            t=t+295;
+
+    carPrice.t.value=t;
+ }
+
+    document.getElementById("totalB").addEventListener("click",calculateTotalPrice,false);
+
+
+</script>
+</body>
+</html>
