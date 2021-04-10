@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Open Weather via AJAX</title>
+</head>
+<body onload="mainFunction()">
+<div id="main">
+    <div id="title">Open Weather via AJAX</div>
+    <div id="entry">Enter ZIP Code:&nbsp;&nbsp;
+        <form id="weatherForm" onsubmit="return false;">
+            <input type="text" id="zip" value="" size="10">&nbsp;&nbsp;
+            <input type="submit" value="Get Weather" id="weatherB" onclick="getWeather()">
+            <input type="submit" value="Clear" id="clear" onclick="clearText()">
+        </form>
+    </div>
+    <div id="results">
+        <textarea rows="20" cols="70" id="weatherResults"></textarea>
+    </div>
+</div>
+<script type="text/javascript">
+var requestObj = null;
+
+function getWeather () {
+	var zipInput = document.getElementById("zip").value;
+	var weatherTemp = document.getElementById("weatherResults");
+	var weatherURL = `https://api.openweathermap.org/data/2.5/weather?zip=` +
+	zipInput
+	+ `,us&units=imperial&APPID=a16f7f1569942845c15afcc4c289426b`;
+	requestObj = new XMLHttpRequest();
+	requestObj.addEventListener("load",handleResponse,false);
+	requestObj.open('GET', weatherURL, true);
+	requestObj.send(null);
+}
+
+function handleResponse () {
+	if (requestObj.readyState == 4) {
+		if (requestObj.status == 200) {
+
+			var weatherObj = JSON.parse(requestObj.responseText);
+			var t = weatherObj.main.temp;
+			var name = weatherObj.name;
+			document.getElementById("weatherResults").innerHTML += name + ' ' + t + '\n';
+		}
+	}
+}
+
+function clearText () {
+	document.getElementById("weatherResults").innerHTML = '';
+}
+</script>
+</body>
+</html>
