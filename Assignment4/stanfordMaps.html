@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Stanford Maps</title>
+    <style>
+        #mapFrame
+        {
+            position: absolute;
+            border: 20px solid pink;
+            margin: 50px;
+            overflow: hidden;
+        }
+
+        #map
+        {
+          position: relative;
+        }
+
+        #zoomNav
+        {
+          position: absolute;
+          right: 0px;
+          width: 200px;
+        }
+
+        #nav
+        {
+          margin-left: 10px;
+          position: absolute;
+          top: 150px;
+        }
+
+        #zoom
+        {
+          margin-left: 20px;
+          position: absolute;
+          top: 100px;
+        }
+
+        #nav input
+        {
+          display: block;
+        }
+
+        .left
+        {
+          float: left;
+        }
+
+        .clear
+        {
+          clear: both;
+        }
+
+        .rightMargin
+        {
+          margin-right: 21px;
+        }
+
+        .leftMargin
+        {
+          margin-left: 23px;
+        }
+
+    </style>
+
+</head>
+
+<body onload="handleResize()">
+
+<div id="mapFrame">
+    <img id="map" src="map-xl.gif" alt="Map" />
+</div>
+
+<h1>Stanford Campus Map</h1>
+
+<div id="zoomNav">
+    <div id="zoom"> <!--ZOOM start-->
+        <form>
+            <input type="button" value="+" onclick="zoomIn()"/>
+            <input type="button" value="-" onclick="zoomOut()"/>
+        </form>
+    </div> <!--ZOOM end-->
+
+    <div id="nav"> <!--NAV start-->
+        <form>
+            <input class="leftMargin" type="button" value="^" onclick="moveUp()"/>
+            <input class="left rightMargin" type="button" value="<" onclick="moveLeft()"/>
+            <input class="left" type="button" value=">" onclick="moveRight()"/>
+            <span class="clear"></span>
+            <input class="leftMargin" type="button" value="v" onclick="moveDown()"/>
+        </form>
+    </div> <!--NAV end-->
+</div>
+
+<script>
+    "use strict";
+
+        var placesArray = new Array(
+                {names: ["Gates"], x: 1558, y: 1461},
+                {names: ["MemChu","Memorial Church"], x: 1845, y: 1883},
+                {names: ["Tresidder Union", "Tresidder"], x: 1804, y: 2225},
+                {names: ["Florence Moore Hall", "Florence Moore", "FloMo"], x: 1705, y: 2496},
+                {names: ["Bookstore", "Book Store"], x: 2022, y: 2144},
+                {names: ["MemAud", "Memorial Auditorium", "Memorial Hall"], x: 2262, y: 1600},
+                {names: ["Green Library", "Green"], x: 2173, y: 1898},
+                {names: ["Meyer Library", "Meyer"], x: 2157, y: 2026}
+            );
+
+        var mapsArray = ["map-xl.gif", "map-l.gif", "map-m.gif", "map-s.gif"];
+
+        var map = document.getElementById("map");
+        var mapFrame = document.getElementById("mapFrame");
+        var clicked = false;
+        var preload = false;
+        var oldX;
+        var oldY;
+
+        document.addEventListener("mousemove",handleMouseMove,false);
+        document.addEventListener("mousedown",handleMouseDown,false);
+        document.addEventListener("mouseup",handleMouseUp,false);
+        document.addEventListener("dblclick",handleDblClick,false);
+        window.addEventListener("resize",handleResize,false);
+
+        function preloadMap()
+        {
+            for(var i = 0; i < mapsArray.length; i++)
+            {
+                try
+              {
+                var img1 = new Image();
+                img1.src = mapsArray[i];
+              }
+              catch (e) { }
+            }
+        }
+
+        function handleResize(evt)
+        {
+            if(!preload)
+            {
+                preloadMap();
+                preload = true;
+            }
+
+            var pageW = window.innerWidth;
+            var pageH = window.innerHeight;
+            var newW = (pageW) - 500;
+            var newH = pageH;
+            mapFrame.style.width = newW + "px";
+            mapFrame.style.height = newH + "px";
+        }
+
+        function handleMouseMove(evt)
+        {
+            if(clicked)
+            {
+                var xCoordinate = evt.xClient - getLeft();
+                var yCoordinate = evt.yClient - getTop();
+                var deltaX = oldX - xCoordinate;
+                var deltaY = oldY - yCoordinate;
+                var backLeft = getMapLeft();
+                var backTop = getMapTop();
+                var newLeft = getMapLeft() - deltaX;
+                var newTop = getMapTop() - deltaY;
+                map.style.left = newLeft + "px";
+                map.style.top = newTop + "px";
+                oldX = xCoordinate;
+                oldY = yCoordinate;
+                mapFrame.style.cursor = "move";
+            }
+        }
+
+        function handleMouseDown(evt)
+        {
+            if (inFrame(evt.xClient,evt.yClient))
+            {
+                oldX = evt.xClient - getLeft();
+                oldY = evt.yClient - getTop();
+                clicked = true;
+                evt.preventDefault();
+            }
+            mapFrame.style.cursor = "move";
+        }
+
+        function handleMouseUp(evt)
+        {
+            clicked = false;
+            mapFrame.style.cursor = "default";
+        }
+
+        function handleDblClick(evt)
+        {
+            if (inFrame(evt.xClient,evt.yClient))
+            {
+                var midpointX = getWidth()/2;
+                var midpointY = getHeight()/2;
+                var newX = getLeft() + midpointX - evt.xClient;
+                var newY = midpointY - evt.yClient;
+                map.style.left = getMapLeft() + newX + "px";
+                map.style.top = getMapTop() + newY + "px";
+            }
+        }
+
+        function moveLeft()
+        {
+            var w = getWidth();
+            var leftMap = getMapLeft();
+            var newLeft = leftMap + (w/2);
+            map.style.left = newLeft + "px";
+        }
+
+        function moveRight()
+        {
+            var w = getWidth();
+            var leftMap = getMapLeft();
+            var newLeft = leftMap - (w/2);
+            map.style.left = newLeft + "px";
+        }
+
+        function moveUp()
+        {
+            var h = getHeight();
+            var topMap = getMapTop();
+            var newTop = topMap + (h/2);
+            map.style.top = newTop + "px";
+        }
+
+        function moveDown()
+        {
+            var h = getHeight();
+            var topMap = getMapTop();
+            var newTop = topMap - (h/2);
+            map.style.top = newTop + "px";
+        }
+
+        function zoomIn()
+        {
+            var file = map.src.substring(map.src.lastIndexOf('/') + 1);
+            var xR = getMapMiddleX() / getMapWidth();
+            var yR = getMapMiddleY() / getMapHeight();
+
+            if(file === "map-s.gif")
+            {
+                map.src = mapsArray[2];
+            }
+            else if(file === "map-m.gif")
+            {
+                map.src = mapsArray[1];
+            }
+            else if(file === "map-l.gif")
+            {
+                map.src = mapsArray[0];
+            }
+            else {}
+
+            var newX = getMapWidth()*xR;
+            var newY = getMapHeight()*yR;
+            var xFrame = getWidth()/2;
+            var yFrame = getHeight()/2;
+            map.style.left = xFrame - newX + "px";
+            map.style.top = yFrame - newY + "px";
+        }
+
+        function zoomOut()
+        {
+            var file = map.src.substring(map.src.lastIndexOf('/') + 1);
+            console.log("xOld: " + getMapMiddleX());
+            console.log("yOld: " + getMapMiddleY());
+            var xR = getMapMiddleX() / getMapWidth();
+            var yR = getMapMiddleY() / getMapHeight();
+
+            if(file === "map-xl.gif")
+            {
+                map.src = mapsArray[1];
+            }
+            else if(file === "map-l.gif")
+            {
+                map.src = mapsArray[2];
+            }
+            else if(file === "map-m.gif")
+            {
+                map.src = mapsArray[3];
+            }
+            else {}
+
+            var newX = getMapWidth()*xR;
+            var newY = getMapHeight()*yR;
+            var xFrame = getWidth()/2;
+            var yFrame = getHeight()/2;
+            map.style.left = xFrame - newX + "px";
+            map.style.top = yFrame - newY + "px";
+        }
+
+        function inFrame(x,y)
+        {
+            return (x >= getLeft() && x <= getLeft() + getWidth() && y >= getTop() && y <= getTop() + getHeight());
+        }
+
+        function getHeight()
+        {
+            var h = parseInt(mapFrame.style.height);
+            if(isNaN(h))
+                h = 0;
+            return h;
+        }
+
+        function getWidth()
+        {
+            var w = parseInt(mapFrame.style.width);
+            if(isNaN(w))
+                w = 0;
+            return w;
+        }
+
+        function getTop()
+        {
+            var t = parseInt(mapFrame.style.top);
+            if(isNaN(t))
+                t = 0;
+            return t + 70;
+        }
+
+        function getLeft()
+        {
+            var l = parseInt(mapFrame.style.left);
+            if(isNaN(l))
+                l = 0;
+            return l + 70;
+        }
+
+        function getMapLeft()
+        {
+            var l = parseInt(map.style.left);
+            if(isNaN(l))
+                l = 0;
+            return l;
+        }
+
+        function getMapTop()
+        {
+            var t = parseInt(map.style.top);
+            if(isNaN(t))
+                t = 0;
+            return t;
+        }
+
+        function getMapHeight()
+        {
+            var h = map.clientHeight;
+            if(isNaN(h))
+                h = 0;
+            return h;
+        }
+
+        function getMapWidth()
+        {
+            var w = map.clientWidth;
+            if(isNaN(w))
+                w = 0;
+            return w;
+        }
+
+        function getMapMiddleX()
+        {
+            var xFrame = getWidth()/2;
+            var leftMap = getMapLeft();
+            return xFrame - leftMap;
+        }
+
+        function getMapMiddleY()
+        {
+            var yFrame = getHeight()/2;
+            var topMap = getMapTop();
+            return yFrame - topMap;
+        }
+</script>
+
+</body>
+</html>
